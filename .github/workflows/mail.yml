@@ -157,16 +157,15 @@ jobs:
           source: "docker-compose.production.yml"
           target: "/home/yc-user/kittygram"
 
-      - name: Copy .env via SCP
+      - name: Copy files via SCP
         uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: ".env"
-          target: "/home/yc-user/kittygram/.env"
-      
+          source: "docker-compose.production.yml,.env"
+          target: "/home/yc-user/kittygram"
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
