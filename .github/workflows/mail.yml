@@ -147,15 +147,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Copy docker-compose.yml via SCP
-        uses: appleboy/scp-action@v1.0.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: "docker-compose.production.yml"
-          target: "/home/yc-user/kittygram"
+
 
       - name: Copy files via SCP
         uses: appleboy/scp-action@v1.0.0
