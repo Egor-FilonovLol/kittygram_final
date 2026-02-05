@@ -61,7 +61,6 @@ jobs:
           cd frontend/
           npm ci
       
-      # ДОБАВЬ ЭТОТ ШАГ:
       - name: Test check front 
         run: |
           cd frontend/
