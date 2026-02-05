@@ -12,7 +12,6 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'lolkekcheburek.servequake.com',
-    'wildberrchecklist.onthewifi.com',
 ]
 
 INSTALLED_APPS = [
