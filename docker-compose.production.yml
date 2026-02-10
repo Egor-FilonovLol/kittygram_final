@@ -39,4 +39,4 @@ services:
     volumes:
       - static:/static
       - media:/app/media
-      # fdsfsd#fdsgdfs##
+      # fdsfsd#fdsgdfs###
