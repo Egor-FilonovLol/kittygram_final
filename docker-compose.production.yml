@@ -1,0 +1,44 @@
+
+volumes:
+  pg_data:
+  backend_static:
+  frontend_static: 
+  media:
+
+services:
+  db:
+    image: postgres:13
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    image: s418963/kittygram_backend
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - static:/app/static
+      - media:/app/media
+
+  frontend:
+    image: s418963/kittygram_frontend
+    env_file: .env
+    depends_on:
+      - backend  
+    command: cp -r /app/build/. /static/
+    volumes:
+      - frontend_static:/frontend_static
+
+  gateway:
+    image: s418963/kittygram_gateway
+    env_file: .env
+    depends_on:
+      - frontend  
+    ports:
+      - 9000:80
+    volumes:
+      - static:/static
+      - frontend_static:/frontend_static
+      - media:/media
+      # fdsfsd#fdsgdfs#### 
