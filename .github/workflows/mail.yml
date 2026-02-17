@@ -150,7 +150,7 @@ jobs:
             sleep 10
             sudo docker compose -f docker-compose.production.yml pull
              sudo docker compose -f docker-compose.production.yml up -d db backend
-            sleep 240
+            sleep 80
             sudo docker compose -f docker-compose.production.yml exec -T backend python manage.py migrate --noinput
             sudo docker compose -f docker-compose.production.yml exec -T backend python manage.py collectstatic --noinput --clear
             sudo docker compose -f docker-compose.production.yml run --rm frontend
