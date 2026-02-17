@@ -1,9 +1,9 @@
 
 volumes:
   pg_data:
-  backend_static:
-  frontend_static: 
+  static:
   media:
+  frontend:
 
 services:
   db:
@@ -24,21 +24,19 @@ services:
   frontend:
     image: s418963/kittygram_frontend
     env_file: .env
-    depends_on:
-      - backend  
-    command: cp -r /app/build/. /static/
+    command: cp -r /app/build/. /frontend/
     volumes:
-      - frontend_static:/frontend_static
+      - frontend:/frontend
 
   gateway:
     image: s418963/kittygram_gateway
     env_file: .env
     depends_on:
-      - frontend  
+      - backend
+      - frontend
     ports:
       - 9000:80
     volumes:
-      - backend_static:/backend_static
-      - frontend_static:/frontend_static
+      - static:/static
       - media:/media
-      # fdsfsd#fdsgdfs#### 
+      - frontend:/frontend  
