@@ -24,7 +24,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: 3.9
 
     - name: Install dependencies
       run: |
@@ -149,12 +149,11 @@ jobs:
             sudo docker compose -f docker-compose.production.yml down -v
             sleep 10
             sudo docker compose -f docker-compose.production.yml pull
-             sudo docker compose -f docker-compose.production.yml up -d db backend
+            sudo docker compose -f docker-compose.production.yml up -d
             sleep 80
             sudo docker compose -f docker-compose.production.yml exec -T backend python manage.py migrate --noinput
             sudo docker compose -f docker-compose.production.yml exec -T backend python manage.py collectstatic --noinput --clear
             sudo docker compose -f docker-compose.production.yml run --rm frontend
-            sudo docker compose -f docker-compose.production.yml up -d gateway
   
   send_message:
     runs-on: ubuntu-latest
